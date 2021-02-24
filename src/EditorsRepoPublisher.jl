@@ -3,9 +3,13 @@ module EditorsRepoPublisher
 using CitableText, CitableObject, CitableImage, EditorsRepo
 using CSV, DataFrames
 
-export publish
+export Publisher
+export publisher, publish
 
-# Better in EditorsRepo ...?
+include("publisher.jl")
+include("iiifsvc.jl")
+
+#=
 function editionfile(csvrow, basedir)
     urn = CtsUrn(csvrow.urn)
     parts = workparts(urn)
@@ -62,9 +66,11 @@ function publish(
     normed = normalizednodes(repo,urn)
     println(normed)
 end
-
+=#
+#=
 """Publish all online texts in repository.
 """
+
 function publish(
     repo::EditingRepository, 
     textroot::AbstractString,
@@ -83,5 +89,5 @@ function publish(
         publish(repo, txt, textroot, dse, iiifsvc, ict)
     end
 end
-
+=#
 end # module
