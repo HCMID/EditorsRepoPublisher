@@ -23,6 +23,8 @@ function yamlplus(csvrow)
         "---",
         "\n\n",
         "# " * titlehdr,
+        "\n\n",
+        string("`", csvrow.urn, "`"),
         "\n\n"
     ]
     join(lines,"\n")
@@ -39,4 +41,38 @@ end
 "Compose title formatted in markdown."
 function mdtitle(csvrow)
     string("*", csvrow.groupName, "*, ", csvrow.workTitle)
+end
+
+
+
+# Compose tabular display of editions
+# from lists of citable nodes
+function tablemarkdown(dipllist, normlist, linkedimages)
+   
+    diplitems = map(cn -> "| `" * passagecomponent(cn.urn) * "` | " * cn.text * " |", dipllist)
+    illustrateddipl = []
+    for i in 1:length(diplitems)
+        push!(illustrateddipl, diplitems[i] *  linkedimages[i] * " |")
+    end
+    dipltable = [
+        "|  | Diplomatic text | Image link |",
+        "| :---: | :------  | --- |",
+      
+        join(illustrateddipl, "\n")
+    ]
+
+    normitems = map(cn -> "| `" * passagecomponent(cn.urn) * "` | " * cn.text * " |", normlist)
+    normtable = [
+        "|  | Normalized text  |",
+        "| :---: | :------ |",
+        join(normitems, "\n")
+    ]
+
+    blocks = [
+        "## Diplomatic edition",
+        join(dipltable,"\n"),
+        "## Normalized edition",
+        join(normtable,"\n"),
+    ]
+    join(blocks, "\n\n")
 end
