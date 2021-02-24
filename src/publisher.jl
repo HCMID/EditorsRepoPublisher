@@ -48,7 +48,7 @@ function publishContinuous(publisher, urn, textdir, imgwidth = 100)
         linkedimgs = []
         for row in eachrow(dserows)
             psg = passagecomponent(row.passage)
-            link = string("[`", psg, "`](", row.image, ")")
+            link = string("[`", psg, "`](", publisher.ict, "urn=", row.image.urn, ")")
             push!(linkedimgs, link)
         end
         top = yamlplus(catalogentry)
