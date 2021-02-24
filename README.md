@@ -1,9 +1,13 @@
-# EditorsRepoPublisher, version `0.2.0`
+# EditorsRepoPublisher, version `0.2.1`
 
 An unregistered Julia package to generate publications of content of an `EditingRepository` (from the `EditorsRepo` package).
 
 ## Features
 
+
+Version 0.2.1:
+
+- fixes a bug in linked images in continuous display
 
 Version 0.2.0:
 
