@@ -5,7 +5,11 @@ function editionfile(csvrow, basedir)
     parts = workparts(urn)
     editiondir = basedir * "/" * string(parts[1], "_", parts[2])
     if !isdir(editiondir)
-        mkdir(editiondir)
+        try 
+            mkdir(editiondir)
+        catch e
+            println("Failed to make directory ", editiondir)
+        end
     end
     editiondir * "/index.md"
 end

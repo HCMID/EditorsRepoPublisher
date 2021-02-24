@@ -4,7 +4,7 @@ using CitableText, CitableObject, CitableImage, EditorsRepo
 using CSV, DataFrames
 
 export Publisher
-export publisher, publish
+export publisher, publishTables, publishContinuous
 
 include("publisher.jl")
 include("iiifsvc.jl")
