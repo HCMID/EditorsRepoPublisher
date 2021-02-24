@@ -76,3 +76,26 @@ function tablemarkdown(dipllist, normlist, linkedimages)
     ]
     join(blocks, "\n\n")
 end
+
+
+
+function paragraphmarkdown(dipllist, normlist, links)
+    
+    diplitems = []
+
+    for n in eachindex(dipllist)
+        push!(diplitems, string(links[n], " ", dipllist[n].text))
+    end
+    #diplitems = map(cn -> "`(" * passagecomponent(cn.urn) * ")` " * cn.text, dipllist)
+    
+    normitems = map(cn -> "`(" * passagecomponent(cn.urn) * ")` " * cn.text, normlist)
+
+    blocks = [
+        "## Diplomatic edition",
+        join(diplitems," "),
+        "## Normalized edition",
+        join(normitems," "),
+    ]
+    join(blocks, "\n\n")
+   
+end
